@@ -1,4 +1,4 @@
-import React, { ReactElement, useState } from "react";
+import  { ReactElement, useState } from "react";
 import { Doctors } from "../../public/Doctors";
 import { useParams } from "react-router-dom";
 import { MdVerified } from "react-icons/md";

@@ -21,18 +21,13 @@ const FindDoctors = () => {
     "Jaipur",
     "Surat",
   ];
-  const allFilters:any[] = [
-    { key: "Expertise", items: Expertise },
-    { key: "Gender", items: Gender },
-    { key: "Fees", items: Fees },
-    { key: "Language", items: Language },
-  ];
+ const allFilters = [...Expertise, ...Gender, ...Fees, ...Language];
 
   const dropDownRef = useRef<HTMLDivElement | null>(null);
   const [dropdown, setDropDown] = useState<boolean>(false);
   const [city, setCity] = useState<string>("Select Location");
   const [filters, setFilters] = useState<any[]>([]);
-console.log("filters", allFilters);
+
         
   const handleClickOutside=(eve:MouseEvent)=>{
 
@@ -151,6 +146,11 @@ console.log("filters", allFilters);
             <Dropdown
               options={Language}
               defaultSelect="Language"
+              onChange={(value) => handleChange(value, "Language")}
+            />
+            <Dropdown
+              options={allFilters}
+              defaultSelect="All Filters"
               onChange={(value) => handleChange(value, "Language")}
             />
           </div>
