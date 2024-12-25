@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react'
+import  { useEffect, useRef, useState } from 'react'
 import { MdLocationPin } from "react-icons/md";
 import { IoIosArrowDown } from "react-icons/io";
 import { FaArrowRightLong } from "react-icons/fa6";
