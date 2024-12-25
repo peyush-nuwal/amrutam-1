@@ -1,46 +1,41 @@
-import {useEffect, useRef, useState} from 'react'
+import { useEffect, useRef, useState } from "react";
+import { IoIosArrowDown } from "react-icons/io";
 
- import { IoIosArrowDown } from "react-icons/io";
-
-type DropdownProps <T=any>= {
-  options: T[]; 
-  defaultSelect: string; 
+type DropdownProps<T = any> = {
+  options: T[];
+  defaultSelect: string;
   onChange?: (selected: T) => void;
-  
-  
 };
-const Dropdown= <T,> ({
+const Dropdown = <T,>({
   options,
   defaultSelect,
   onChange,
-
-}: DropdownProps<T>) => {
+}: DropdownProps<T>): JSX.Element => {
   const [dropdown, setDropDown] = useState(false);
   const [selected, setSelected] = useState(defaultSelect);
-   const dropdownRef=useRef<HTMLDivElement|null>(null);
+  const dropdownRef = useRef<HTMLDivElement | null>(null);
 
-   const handleClickOutside=(e:MouseEvent)=>{
-    
-       if(dropdownRef&&!dropdownRef.current?.contains(e.target as Node)){
-           setDropDown(false)
-       }
-   }
-
-   useEffect(() => {
-     document.addEventListener("click", handleClickOutside);
-   
-     return () => document.removeEventListener('click',handleClickOutside)
-   }, [])
-
-    const handleSelection = (opt: any) => {
-      if (opt === null) {
-        setSelected(defaultSelect);
-      } else {
-        setSelected(String(opt));
-      }
+  const handleClickOutside = (e: MouseEvent) => {
+    if (dropdownRef && !dropdownRef.current?.contains(e.target as Node)) {
       setDropDown(false);
-      onChange?.(opt);
-    };
+    }
+  };
+
+  useEffect(() => {
+    document.addEventListener("click", handleClickOutside);
+
+    return () => document.removeEventListener("click", handleClickOutside);
+  }, []);
+
+  const handleSelection = (opt: any) => {
+    if (opt === null) {
+      setSelected(defaultSelect);
+    } else {
+      setSelected(String(opt));
+    }
+    setDropDown(false);
+    onChange?.(opt);
+  };
   return (
     <div
       ref={dropdownRef}
@@ -93,4 +88,4 @@ const Dropdown= <T,> ({
   );
 };
 
-export default Dropdown
+export default Dropdown;
